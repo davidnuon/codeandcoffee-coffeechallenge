@@ -26,7 +26,6 @@
 		// Cutting up the character
 		ascii = document.getElementById('text')
 			.value
-			.trim()
 			.split('\n')
 			.map(function(line) {
 				return line.split('');
@@ -53,29 +52,6 @@
 			unit_height: Math.floor(canvas.height / IMAGE_HEIGHT)
 		};
 
-
-		// Character frequency map
-		var character_map = ascii
-			.reduce(function(a,b) {
-				return a.concat(b);
-			}, [])
-			.reduce(function(map, c) {
-				if( !(c in map)) {
-					map[c] = 0;
-				}
-
-				map[c]++; 
-				return map;
-			}, {}); 
-
-
-
-		// Calculate the gradient
-		var GRADIENT_BEGIN = new rgb(255, 255, 255);
-		var GRADIENT_END = new rgb(0, 0, 0);
-
-		console.log('Map', character_map);
-
 		// Drawing the image
 		for(var iy = 0; iy < IMAGE_HEIGHT; iy++) {
 			var drawing = true;
@@ -89,10 +65,12 @@
 				drawing = (ix < ascii[iy].length);
 			}
 		}
-
+		window.char = ascii
+			.reduce(function(a,b) {
+				return a.concat(b);
+			}, [])
 
 	}
-
 
 	window.onload = render;
 }(window, document)); 
