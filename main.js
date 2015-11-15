@@ -54,8 +54,6 @@
 
 		// Drawing the image
 		for(var iy = 0; iy < IMAGE_HEIGHT; iy++) {
-			var drawing = true;
-			var ix = 0;
 			for(var ix = 0; ix < ascii[iy].length; ix++) {
 				var current_pixel = ascii[iy][ix];
 				if(current_pixel != EMPTY_PIXEL) {
